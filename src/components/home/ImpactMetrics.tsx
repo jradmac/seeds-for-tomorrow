@@ -4,11 +4,11 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const breakdown = [
-  { label: "Software Development", description: "Building the AI learning platform, voice recognition, and adaptive curriculum engine", range: "$800–1,500" },
-  { label: "Annual Software Costs", description: "AI API usage, cloud hosting, database, and infrastructure", range: "$400–800" },
+  { label: "Implementation & Training", description: "On-the-ground deployment, community facilitator training, travel, and onboarding", range: "$600–1,200" },
+  { label: "Software Development", description: "Building the AI learning platform, voice recognition, and adaptive curriculum engine", range: "$500–1,000" },
   { label: "Tablets & Devices", description: "Durable, kid-friendly tablets preloaded with the learning platform", range: "$300–600" },
-  { label: "Implementation & Training", description: "On-the-ground deployment, community facilitator training, and onboarding", range: "$200–500" },
-  { label: "Curriculum & Content", description: "Culturally relevant lesson design, translation, and educational material development", range: "$150–300" },
+  { label: "Annual Software Costs", description: "AI API usage, cloud hosting, database, and infrastructure", range: "$250–500" },
+  { label: "Curriculum & Content", description: "Culturally relevant lesson design, translation, and educational material development", range: "$200–400" },
   { label: "Monitoring & Evaluation", description: "Learning outcome tracking, progress reporting, and program assessment", range: "$150–300" },
 ];
 
