@@ -1,4 +1,4 @@
-export const SITE_NAME = "Seeds for Tomorrow";
+export const SITE_NAME = "For Tomorrow";
 export const SITE_DESCRIPTION =
   "AI-powered learning for children the school system will never reach. Starting in Rio de Janeiro.";
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://seedsfortomorrow.org";

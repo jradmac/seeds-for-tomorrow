@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Learn about Seeds for Tomorrow — our mission, team, and roadmap to bring AI-powered education to underserved communities worldwide.",
+    "Learn about For Tomorrow — our mission, team, and roadmap to bring AI-powered education to underserved communities worldwide.",
 };
 
 const timeline = [
@@ -92,7 +92,7 @@ export default function AboutPage() {
               computer.
             </p>
             <p className="text-xl font-serif font-bold text-warm-black mt-8">
-              Seeds for Tomorrow exists because every child deserves access to
+              For Tomorrow exists because every child deserves access to
               education — regardless of where they were born.
             </p>
           </div>

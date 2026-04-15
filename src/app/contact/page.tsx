@@ -10,7 +10,7 @@ import { Mail, MapPin } from "lucide-react";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with Seeds for Tomorrow. Reach out about partnerships, volunteering, donations, or general inquiries.",
+    "Get in touch with For Tomorrow. Reach out about partnerships, volunteering, donations, or general inquiries.",
 };
 
 export default function ContactPage() {
