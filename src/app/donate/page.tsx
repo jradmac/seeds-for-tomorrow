@@ -2,74 +2,42 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { buttonVariants } from "@/components/ui/button";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Check, Heart } from "lucide-react";
 
 const tiers = [
   {
-    id: "child",
-    name: "Educate a Child",
-    amount: 1,
-    period: "/month",
-    description: "Fund one child's AI-powered education for an entire month.",
-    features: [
-      "Personalized AI tutoring sessions",
-      "Reading, writing & language lessons",
-      "Progress tracking & assessments",
-      "Monthly impact update",
-    ],
-    highlight: false,
+    amount: 2000,
+    url: "https://buy.stripe.com/fZu6oH5ve0wIdL34073Ru03",
+    description: "Seed the work.",
   },
   {
-    id: "platform",
-    name: "Power the Platform",
-    amount: 20,
-    period: "/month",
-    description:
-      "Cover a full month of software infrastructure — the engine behind every lesson.",
-    features: [
-      "AI hosting & API costs for a month",
-      "Device maintenance support",
-      "Curriculum development",
-      "Quarterly impact report",
-    ],
+    amount: 3000,
+    url: "https://buy.stripe.com/28EfZhaPybbm36p0NV3Ru02",
+    description: "Extend our reach.",
+  },
+  {
+    amount: 4000,
+    url: "https://buy.stripe.com/4gMeVd4ra5R2gXf7cj3Ru01",
+    description: "Fund a full cohort.",
     highlight: true,
   },
   {
-    id: "founding",
-    name: "Founding Donor",
-    amount: 2000,
-    period: "one-time",
-    description:
-      "Join our founding circle. Your name permanently tied to the launch that proved AI education works.",
-    features: [
-      "Listed as Founding Donor on our site",
-      "Direct updates from the field",
-      "Input on pilot priorities",
-      "Invitation to annual impact review",
-      "Tax-deductible receipt",
-    ],
-    highlight: false,
+    amount: 5000,
+    url: "https://buy.stripe.com/aFaeVd6zigvG5ex7cj3Ru00",
+    description: "Launch a new site.",
   },
 ];
 
-const customAmounts = [5, 10, 25, 50, 100];
-
 export default function DonatePage() {
-  const [selectedTier, setSelectedTier] = useState<string | null>(null);
-  const [customAmount, setCustomAmount] = useState<number | null>(null);
-  const [customInput, setCustomInput] = useState("");
+  const [selected, setSelected] = useState<number | null>(null);
+
+  const selectedTier = tiers.find((t) => t.amount === selected);
 
   function handleDonate() {
-    // Phase 2: integrate with Stripe/Donorbox
-    const amount = selectedTier
-      ? tiers.find((t) => t.id === selectedTier)?.amount
-      : customAmount || Number(customInput);
-    alert(
-      `Donation processing coming soon! Amount: $${amount}. Thank you for your generosity.`
-    );
+    if (!selectedTier) return;
+    window.location.href = selectedTier.url;
   }
 
   return (
@@ -98,30 +66,26 @@ export default function DonatePage() {
             transition={{ delay: 0.3 }}
             className="mx-auto mt-4 max-w-xl text-stone-400 text-lg"
           >
-            Every dollar goes directly to platform operations, community
-            deployment, and expanding access. Choose how you want to help.
+            Choose an amount below. Every dollar goes directly to platform
+            operations, community deployment, and expanding access.
           </motion.p>
         </div>
       </section>
 
-      {/* Tiers */}
+      {/* Amount selection */}
       <section className="bg-warm-white py-20 sm:py-28">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {tiers.map((tier, i) => (
               <motion.button
-                key={tier.id}
+                key={tier.amount}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                onClick={() => {
-                  setSelectedTier(tier.id);
-                  setCustomAmount(null);
-                  setCustomInput("");
-                }}
+                onClick={() => setSelected(tier.amount)}
                 className={cn(
-                  "relative text-left rounded-2xl border-2 p-8 transition-all hover:-translate-y-1",
-                  selectedTier === tier.id
+                  "relative rounded-2xl border-2 p-8 text-left transition-all hover:-translate-y-1",
+                  selected === tier.amount
                     ? "border-teal bg-teal/5 shadow-lg"
                     : tier.highlight
                       ? "border-amber/30 bg-white shadow-md"
@@ -134,96 +98,24 @@ export default function DonatePage() {
                   </span>
                 )}
 
-                {selectedTier === tier.id && (
+                {selected === tier.amount && (
                   <div className="absolute top-4 right-4 flex h-6 w-6 items-center justify-center rounded-full bg-teal">
                     <Check className="h-4 w-4 text-white" />
                   </div>
                 )}
 
-                <h3 className="font-serif text-xl font-bold text-warm-black">
-                  {tier.name}
-                </h3>
-
-                <div className="mt-4 flex items-baseline gap-1">
+                <div className="flex items-baseline gap-1">
                   <span className="font-mono text-4xl font-bold text-warm-black">
                     ${tier.amount.toLocaleString()}
                   </span>
-                  <span className="text-sm text-warm-gray">{tier.period}</span>
                 </div>
 
-                <p className="mt-4 text-sm text-warm-gray leading-relaxed">
+                <p className="mt-3 text-sm text-warm-gray leading-relaxed">
                   {tier.description}
                 </p>
-
-                <ul className="mt-6 space-y-2.5">
-                  {tier.features.map((feature) => (
-                    <li
-                      key={feature}
-                      className="flex items-start gap-2.5 text-sm text-warm-gray"
-                    >
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-teal" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
               </motion.button>
             ))}
           </div>
-
-          {/* Custom amount */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="mx-auto mt-16 max-w-2xl"
-          >
-            <div className="border-t border-border pt-12">
-              <h3 className="text-center font-serif text-xl font-bold text-warm-black mb-6">
-                Or choose your own amount
-              </h3>
-
-              <div className="flex flex-wrap justify-center gap-3 mb-6">
-                {customAmounts.map((amount) => (
-                  <button
-                    key={amount}
-                    onClick={() => {
-                      setCustomAmount(amount);
-                      setSelectedTier(null);
-                      setCustomInput("");
-                    }}
-                    className={cn(
-                      "rounded-full px-5 py-2 text-sm font-medium transition-all",
-                      customAmount === amount
-                        ? "bg-teal text-white"
-                        : "border border-border bg-white text-warm-gray hover:border-teal/50"
-                    )}
-                  >
-                    ${amount}
-                  </button>
-                ))}
-              </div>
-
-              <div className="flex items-center justify-center gap-3">
-                <div className="relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-warm-gray font-mono">
-                    $
-                  </span>
-                  <input
-                    type="number"
-                    min="1"
-                    placeholder="Other"
-                    value={customInput}
-                    onChange={(e) => {
-                      setCustomInput(e.target.value);
-                      setCustomAmount(null);
-                      setSelectedTier(null);
-                    }}
-                    className="h-11 w-32 rounded-lg border border-border bg-white pl-7 pr-3 text-sm font-mono text-warm-black outline-none focus:border-teal focus:ring-2 focus:ring-teal/20"
-                  />
-                </div>
-              </div>
-            </div>
-          </motion.div>
 
           {/* CTA */}
           <motion.div
@@ -234,14 +126,17 @@ export default function DonatePage() {
           >
             <Button
               onClick={handleDonate}
-              disabled={!selectedTier && !customAmount && !customInput}
+              disabled={!selected}
               className="bg-teal hover:bg-teal-dark text-white font-semibold h-12 px-10 text-base rounded-full w-full sm:w-auto disabled:opacity-40"
             >
               <Heart className="mr-2 h-5 w-5" />
-              Donate Now
+              {selected
+                ? `Donate $${selected.toLocaleString()}`
+                : "Select an amount"}
             </Button>
             <p className="mt-4 text-xs text-warm-gray">
-              Secure payment processing. Tax-deductible where applicable.
+              Secure payment processing via Stripe. Tax-deductible where
+              applicable.
             </p>
           </motion.div>
         </div>

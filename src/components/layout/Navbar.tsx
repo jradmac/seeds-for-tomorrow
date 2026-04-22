@@ -31,13 +31,13 @@ export function Navbar() {
             </Link>
           ))}
           <Link
-            href="/#get-involved"
+            href="/donate"
             className={cn(
               buttonVariants({}),
-              "bg-white text-warm-black hover:bg-stone-200 font-medium px-5 h-9 text-sm rounded-full"
+              "bg-amber text-warm-black hover:bg-amber-light font-semibold px-6 h-9 text-sm rounded-full"
             )}
           >
-            Support
+            Donate
           </Link>
         </div>
 
@@ -70,14 +70,14 @@ export function Navbar() {
               </Link>
             ))}
             <Link
-              href="/#get-involved"
+              href="/donate"
               onClick={() => setMobileOpen(false)}
               className={cn(
                 buttonVariants({}),
-                "mt-3 bg-white text-warm-black hover:bg-stone-200 font-medium h-10 rounded-full"
+                "mt-3 bg-amber text-warm-black hover:bg-amber-light font-semibold h-10 rounded-full"
               )}
             >
-              Support the Mission
+              Donate
             </Link>
           </div>
         </div>

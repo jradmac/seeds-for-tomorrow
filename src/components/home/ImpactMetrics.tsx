@@ -40,7 +40,7 @@ export function ImpactMetrics() {
           transition={{ delay: 0.2 }}
           className="text-center text-stone-400 mb-6 max-w-lg mx-auto"
         >
-          A founding donation of $2,000–4,000 funds the full launch of our
+          A founding donation of $2,000–5,000 funds the full launch of our
           Rio pilot. Here&apos;s exactly how it breaks down.
         </motion.p>
 
@@ -55,7 +55,7 @@ export function ImpactMetrics() {
             $2,000
           </span>
           <span className="font-mono text-5xl font-bold text-stone-600 sm:text-6xl">
-            –4,000
+            –5,000
           </span>
         </motion.div>
 
